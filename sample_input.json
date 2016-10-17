@@ -1,0 +1,45 @@
+{
+  "rowCount": 3,
+  "columnCount": 3,
+  "gameBoard": [
+    [
+      "C",
+      "G",
+      "S"
+    ],
+    [
+      "N",
+      "A",
+      "D"
+    ],
+    [
+      "I",
+      "Z",
+      "R"
+    ]
+  ],
+  "wordList": [
+    "air",
+    "car",
+    "card",
+    "cards",
+    "drag",
+    "drags",
+    "sad",
+    "sadden",
+    "Sin",
+    "snail",
+    "zig"
+  ],
+  "letterPoints": {
+    "a": 2,
+    "e": 2,
+    "i": 2,
+    "o": 2,
+    "u": 2,
+    "y": 2
+  },
+  "wordFindTime": 15,
+  "letterIdentifyTime": 2,
+  "maxGameTime": 55
+}
