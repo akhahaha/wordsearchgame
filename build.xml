@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wordsearchgame" default="all">
+
+
+    <property file="build.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <property name="skip.tests" value="true"/>
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*.yarb/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/RCS/**"/>
+        <exclude name="**/SCCS/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/rcs/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.egg"/>
+        <include name="*.jar"/>
+        <include name="*.ear"/>
+        <include name="*.apk"/>
+        <include name="*.swc"/>
+        <include name="*.war"/>
+        <include name="*.ane"/>
+        <include name="*.zip"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <exclude name="**/?*.aj"/>
+    </patternset>
+
+
+    <!-- Project Libraries -->
+
+    <path id="library.gradle:_junit:junit:4.11.classpath">
+        <pathelement
+                location="${basedir}/../../../../../.gradle/caches/modules-2/files-2.1/junit/junit/4.11/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar"/>
+    </path>
+
+    <path id="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath">
+        <pathelement
+                location="${basedir}/../../../../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar"/>
+    </path>
+
+    <!-- Modules -->
+
+
+    <!-- Module wordsearchgame -->
+
+    <dirname property="module.wordsearchgame.basedir" file="${ant.file}"/>
+
+
+    <property name="compiler.args.wordsearchgame" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+
+    <property name="wordsearchgame.output.dir" value="${module.wordsearchgame.basedir}/out/production/wordsearchgame"/>
+    <property name="wordsearchgame.testoutput.dir" value="${module.wordsearchgame.basedir}/out/test/wordsearchgame"/>
+
+    <path id="wordsearchgame.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="wordsearchgame.module.production.classpath"/>
+
+    <path id="wordsearchgame.runtime.production.module.classpath">
+        <pathelement location="${wordsearchgame.output.dir}"/>
+    </path>
+
+    <path id="wordsearchgame.module.classpath">
+        <pathelement location="${wordsearchgame.output.dir}"/>
+    </path>
+
+    <path id="wordsearchgame.runtime.module.classpath">
+        <pathelement location="${wordsearchgame.testoutput.dir}"/>
+        <pathelement location="${wordsearchgame.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.wordsearchgame">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.wordsearchgame">
+        <patternset refid="excluded.from.module.wordsearchgame"/>
+    </patternset>
+
+
+    <target name="compile.module.wordsearchgame"
+            depends="compile.module.wordsearchgame.production,compile.module.wordsearchgame.tests"
+            description="Compile module wordsearchgame"/>
+
+    <target name="compile.module.wordsearchgame.production"
+            description="Compile module wordsearchgame; production classes"/>
+
+    <target name="compile.module.wordsearchgame.tests" depends="compile.module.wordsearchgame.production"
+            description="compile module wordsearchgame; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.wordsearchgame" description="cleanup module">
+        <delete dir="${wordsearchgame.output.dir}"/>
+        <delete dir="${wordsearchgame.testoutput.dir}"/>
+    </target>
+
+
+    <!-- Module wordsearchgame_main -->
+
+    <dirname property="module.wordsearchgame_main.basedir" file="${ant.file}"/>
+
+
+    <property name="compiler.args.wordsearchgame_main"
+              value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+
+    <property name="wordsearchgame_main.output.dir" value="${module.wordsearchgame_main.basedir}/build/classes/main"/>
+    <property name="wordsearchgame_main.testoutput.dir"
+              value="${module.wordsearchgame_main.basedir}/build/classes/main"/>
+
+    <path id="wordsearchgame_main.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="wordsearchgame_main.module.production.classpath">
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+    </path>
+
+    <path id="wordsearchgame_main.runtime.production.module.classpath">
+        <pathelement location="${wordsearchgame_main.output.dir}"/>
+        <pathelement location="${basedir}/lib/javax.json-1.0.4.jar"/>
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+    </path>
+
+    <path id="wordsearchgame_main.module.classpath">
+        <pathelement location="${wordsearchgame_main.output.dir}"/>
+        <pathelement location="${basedir}/lib/javax.json-1.0.4.jar"/>
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+    </path>
+
+    <path id="wordsearchgame_main.runtime.module.classpath">
+        <pathelement location="${wordsearchgame_main.output.dir}"/>
+        <pathelement location="${basedir}/lib/javax.json-1.0.4.jar"/>
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.wordsearchgame_main">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.wordsearchgame_main">
+        <patternset refid="excluded.from.module.wordsearchgame_main"/>
+    </patternset>
+
+    <path id="wordsearchgame_main.module.sourcepath">
+        <dirset dir="${module.wordsearchgame_main.basedir}/src/main">
+            <include name="java"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.wordsearchgame_main"
+            depends="compile.module.wordsearchgame_main.production,compile.module.wordsearchgame_main.tests"
+            description="Compile module wordsearchgame_main"/>
+
+    <target name="compile.module.wordsearchgame_main.production"
+            description="Compile module wordsearchgame_main; production classes">
+        <mkdir dir="${wordsearchgame_main.output.dir}"/>
+        <javac destdir="${wordsearchgame_main.output.dir}" debug="${compiler.debug}"
+               nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+            <compilerarg line="${compiler.args.wordsearchgame_main}"/>
+            <bootclasspath refid="wordsearchgame_main.module.bootclasspath"/>
+            <classpath refid="wordsearchgame_main.module.production.classpath"/>
+            <src refid="wordsearchgame_main.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.wordsearchgame_main"/>
+        </javac>
+
+        <copy todir="${wordsearchgame_main.output.dir}">
+            <fileset dir="${module.wordsearchgame_main.basedir}/src/main/java">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.wordsearchgame_main.tests" depends="compile.module.wordsearchgame_main.production"
+            description="compile module wordsearchgame_main; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.wordsearchgame_main" description="cleanup module">
+        <delete dir="${wordsearchgame_main.output.dir}"/>
+        <delete dir="${wordsearchgame_main.testoutput.dir}"/>
+    </target>
+
+
+    <!-- Module wordsearchgame_test -->
+
+    <dirname property="module.wordsearchgame_test.basedir" file="${ant.file}"/>
+
+
+    <property name="compiler.args.wordsearchgame_test"
+              value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+
+    <property name="wordsearchgame_test.output.dir" value="undefined"/>
+    <property name="wordsearchgame_test.testoutput.dir"
+              value="${module.wordsearchgame_test.basedir}/build/classes/test"/>
+
+    <path id="wordsearchgame_test.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="wordsearchgame_test.module.production.classpath">
+        <pathelement location="${wordsearchgame_main.output.dir}"/>
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+        <path refid="library.gradle:_junit:junit:4.11.classpath"/>
+        <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    </path>
+
+    <path id="wordsearchgame_test.runtime.production.module.classpath">
+        <path refid="wordsearchgame_main.runtime.production.module.classpath"/>
+        <path refid="library.gradle:_junit:junit:4.11.classpath"/>
+        <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    </path>
+
+    <path id="wordsearchgame_test.module.classpath">
+        <pathelement location="${wordsearchgame_main.output.dir}"/>
+        <pathelement location="${basedir}/lib/javax.json-1.0.4.jar"/>
+        <pathelement location="${basedir}/lib/javax.json-api-1.0.jar"/>
+        <path refid="library.gradle:_junit:junit:4.11.classpath"/>
+        <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    </path>
+
+    <path id="wordsearchgame_test.runtime.module.classpath">
+        <pathelement location="${wordsearchgame_test.testoutput.dir}"/>
+        <path refid="wordsearchgame_main.runtime.module.classpath"/>
+        <path refid="library.gradle:_junit:junit:4.11.classpath"/>
+        <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.wordsearchgame_test">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.wordsearchgame_test">
+        <patternset refid="excluded.from.module.wordsearchgame_test"/>
+    </patternset>
+
+
+    <target name="compile.module.wordsearchgame_test"
+            depends="compile.module.wordsearchgame_test.production,compile.module.wordsearchgame_test.tests"
+            description="Compile module wordsearchgame_test"/>
+
+    <target name="compile.module.wordsearchgame_test.production" depends="compile.module.wordsearchgame_main"
+            description="Compile module wordsearchgame_test; production classes"/>
+
+    <target name="compile.module.wordsearchgame_test.tests" depends="compile.module.wordsearchgame_test.production"
+            description="compile module wordsearchgame_test; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.wordsearchgame_test" description="cleanup module">
+        <delete dir="${wordsearchgame_test.output.dir}"/>
+        <delete dir="${wordsearchgame_test.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean"
+            depends="clean.module.wordsearchgame, clean.module.wordsearchgame_main, clean.module.wordsearchgame_test"
+            description="cleanup all"/>
+
+    <target name="build.modules"
+            depends="init, clean, compile.module.wordsearchgame, compile.module.wordsearchgame_main, compile.module.wordsearchgame_test"
+            description="build all modules"/>
+
+    <target name="all" depends="build.modules" description="build all"/>
+</project>
