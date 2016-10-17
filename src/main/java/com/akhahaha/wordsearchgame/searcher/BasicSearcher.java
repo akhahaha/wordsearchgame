@@ -13,6 +13,7 @@ public class BasicSearcher implements Searcher {
     private final Map<Character, List<GameTile>> tileCharacterMap;
     private final int maxWordLength;
     private final List<String> wordsFound;
+    private final int bestScore;
     private final SearchResult searchResult;
 
     public static SearchResult search(GameParameters gameParameters) {
@@ -30,8 +31,8 @@ public class BasicSearcher implements Searcher {
         this.tileCharacterMap = constructTileCharacterMap();
         this.maxWordLength = calculateMaxWordSize();
         this.wordsFound = findWords();
-        // TODO: Find best possible score
-        this.searchResult = SearchResult.newInstance(wordsFound, 0);
+        this.bestScore = determineBestScore(wordsFound);
+        this.searchResult = SearchResult.newInstance(wordsFound, bestScore);
     }
 
     public GameParameters getGameParameters() {
@@ -179,6 +180,58 @@ public class BasicSearcher implements Searcher {
 
     public List<String> getWordsFound() {
         return wordsFound;
+    }
+
+    private int determineBestScore(List<String> words) {
+        // https://en.wikipedia.org/wiki/Knapsack_problem#0.2F1_knapsack_problem
+        // TODO: Use 1-d array to minimize space
+        int n = words.size();
+        int W = gameParameters.getMaxGameTime();
+
+        // Initialize values
+        int[] v = new int[n];
+        int[] w = new int[n];
+        int[][] m = new int[n][W + 1];
+        for (int i = 0; i < n; i++) {
+            v[i] = calculateWordScore(words.get(i));
+            w[i] = calculateWordCost(words.get(i));
+        }
+        for (int j = 0; j < W; j++) {
+            m[0][j] = 0;
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j <= W; j++) {
+                if (w[i - 1] > j) {
+                    m[i][j] = m[i - 1][j];
+                } else {
+                    m[i][j] = Math.max(m[i - 1][j], m[i - 1][j - w[i - 1]] + v[i - 1]);
+                }
+            }
+        }
+
+        return m[n - 1][W];
+    }
+
+    private int calculateWordScore(String word) {
+        int score = 0;
+        for (char c : word.toCharArray()) {
+            if (gameParameters.getLetterPoints().containsKey(c)) {
+                score += gameParameters.getLetterPoints().get(c);
+            } else {
+                score++;
+            }
+        }
+
+        return score;
+    }
+
+    private int calculateWordCost(String word) {
+        return gameParameters.getWordFindTime() + (word.length() - 1) * gameParameters.getLetterIdentifyTime();
+    }
+
+    public int getBestScore() {
+        return bestScore;
     }
 
     @Override
