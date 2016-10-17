@@ -1,15 +1,17 @@
 package com.akhahaha.wordsearchgame;
 
 import com.akhahaha.wordsearchgame.model.GameParameters;
+import com.akhahaha.wordsearchgame.model.SearchResult;
+import com.akhahaha.wordsearchgame.searcher.BasicSearcher;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WordSearchGame {
     public static void main(String... args) throws FileNotFoundException {
@@ -23,6 +25,21 @@ public class WordSearchGame {
         // Parse JSON
         JsonReader reader = Json.createReader(stdinStream);
         GameParameters gameParameters = parseJson((JsonObject) reader.read());
+
+        // Perform search
+        SearchResult searchResult = BasicSearcher.search(gameParameters);
+
+        // Print results
+        Collections.sort(searchResult.getWordsFound(), new Comparator<String>() {
+            @Override
+            public int compare(String word1, String word2) {
+                return word1.compareTo(word2);
+            }
+        });
+        for (String word : searchResult.getWordsFound()) {
+            System.out.println(word);
+        }
+        System.out.println(searchResult.getBestScore());
     }
 
     private static GameParameters parseJson(JsonObject gameParametersJson) {
